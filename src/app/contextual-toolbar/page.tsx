@@ -1,5 +1,10 @@
-import { Badge } from "@/components/ui/badge";
+import CreateApiKey from "@/components/contextual-toolbar/create-api-key";
+import RepoConnector from "@/components/contextual-toolbar/repo-connector";
+import ShareWorkspace from "@/components/contextual-toolbar/share-workspace";
+import BadgeList from "@/components/shared/badge-list";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 
 const ContextualToolbarPage = () => {
@@ -20,32 +25,45 @@ const ContextualToolbarPage = () => {
               actions inside the component, without changing to another page or
               context.
             </p>
-            <div className="mt-4 flex gap-2">
-              <Badge
-                variant={"secondary"}
-                className="text-[#737373] text-[13px]"
-              >
-                React
-              </Badge>
-              <Badge
-                variant={"secondary"}
-                className="text-[#737373] text-[13px]"
-              >
-                Tailwind css
-              </Badge>
-              <Badge
-                variant={"secondary"}
-                className="text-[#737373] text-[13px]"
-              >
-                Motion (prev. framer motion)
-              </Badge>
+            <div className="mt-4">
+              <BadgeList />
             </div>
           </div>
           <Button asChild className="w-fit" variant={"outline"} size={"sm"}>
             <Link href="/contextual-toolbar">Next Task</Link>
           </Button>
         </div>
-        <div className="flex flex-col justify-center pl-28">for card</div>
+        <div className="flex flex-col justify-center">
+          <div className="p-[10px] max-w-[482px] shadow-[0px_8px_16px_0px_#0000000A,_0px_4px_8px_0px_#0000000A,_0px_0px_0px_1px_#09090B0D]">
+            <Tabs defaultValue="webhook">
+              <TabsContent value="webhook">
+                Make changes to your account here.
+              </TabsContent>
+              <TabsContent value="repositories">
+                <RepoConnector />
+              </TabsContent>
+              <TabsContent value="api">
+                <CreateApiKey />
+              </TabsContent>
+              <TabsContent value="workspace">
+                <ShareWorkspace />
+              </TabsContent>
+              <div className="flex items-center">
+                <div className="overflow-x-scroll scrollbar-none flex-1">
+                  <TabsList>
+                    <TabsTrigger value="webhook">Create webhook</TabsTrigger>
+                    <TabsTrigger value="repositories">
+                      Connect repositories
+                    </TabsTrigger>
+                    <TabsTrigger value="api">Create API key</TabsTrigger>
+                    <TabsTrigger value="workspace">Share workspace</TabsTrigger>
+                  </TabsList>
+                </div>
+                <Menu />
+              </div>
+            </Tabs>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import BadgeList from "@/components/shared/badge-list";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -15,25 +15,8 @@ export default function Home() {
               Calendar widget with clear timezone differences information. Click
               on the widget to interact with it.
             </p>
-            <div className="mt-4 flex gap-2">
-              <Badge
-                variant={"secondary"}
-                className="text-[#737373] text-[13px]"
-              >
-                React
-              </Badge>
-              <Badge
-                variant={"secondary"}
-                className="text-[#737373] text-[13px]"
-              >
-                Tailwind css
-              </Badge>
-              <Badge
-                variant={"secondary"}
-                className="text-[#737373] text-[13px]"
-              >
-                Motion (prev. framer motion)
-              </Badge>
+            <div className="mt-4">
+              <BadgeList />
             </div>
           </div>
           <Button asChild className="w-fit" variant={"outline"} size={"sm"}>
