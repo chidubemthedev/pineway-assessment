@@ -1,4 +1,5 @@
 import CreateApiKey from "@/components/contextual-toolbar/create-api-key";
+import CreateWebhook from "@/components/contextual-toolbar/create-webhook";
 import RepoConnector from "@/components/contextual-toolbar/repo-connector";
 import ShareWorkspace from "@/components/contextual-toolbar/share-workspace";
 import BadgeList from "@/components/shared/badge-list";
@@ -34,10 +35,10 @@ const ContextualToolbarPage = () => {
           </Button>
         </div>
         <div className="flex flex-col justify-center">
-          <div className="p-[10px] max-w-[482px] shadow-[0px_8px_16px_0px_#0000000A,_0px_4px_8px_0px_#0000000A,_0px_0px_0px_1px_#09090B0D]">
+          <div className="p-[10px] rounded-[18px] max-w-[482px] shadow-[0px_8px_16px_0px_#0000000A,_0px_4px_8px_0px_#0000000A,_0px_0px_0px_1px_#09090B0D]">
             <Tabs defaultValue="webhook">
               <TabsContent value="webhook">
-                Make changes to your account here.
+                <CreateWebhook />
               </TabsContent>
               <TabsContent value="repositories">
                 <RepoConnector />
