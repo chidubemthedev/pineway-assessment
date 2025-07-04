@@ -1,3 +1,4 @@
+import MeetingCard from "@/components/calender-widget/meeting-card";
 import BadgeList from "@/components/shared/badge-list";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -23,7 +24,9 @@ export default function Home() {
             <Link href="/contextual-toolbar">Next Task</Link>
           </Button>
         </div>
-        <div className="flex flex-col justify-center pl-28">for card</div>
+        <div className="flex flex-col justify-center items-center">
+          <MeetingCard />
+        </div>
       </div>
     </div>
   );
