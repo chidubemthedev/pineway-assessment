@@ -2,18 +2,23 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function Home() {
+const ContextualToolbarPage = () => {
   return (
     <div className="h-screen bg-white p-[46px]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full rounded-4xl shadow-[0px_1px_2px_0px_#09090B0D,_0px_0px_0px_1px_#09090B0D]">
         <div className="flex flex-col justify-center pl-28">
-          <div className="max-w-[351px]">
+          <div className="max-w-[265px]">
             <h1 className="font-[500] leading-6 text-[#292929]">
-              Calendar widget
+              Contextual toolbar
             </h1>
             <p className="leading-5 text-sm text-[#737373] mt-3">
-              Calendar widget with clear timezone differences information. Click
-              on the widget to interact with it.
+              A toolbar that suggests and enables actions based on users&apos;
+              navigation.
+            </p>
+            <p className="leading-5 text-sm text-[#737373] mt-3">
+              Suggestions are related to the current page and users can perform
+              actions inside the component, without changing to another page or
+              context.
             </p>
             <div className="mt-4 flex gap-2">
               <Badge
@@ -44,4 +49,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default ContextualToolbarPage;
