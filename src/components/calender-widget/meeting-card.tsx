@@ -12,9 +12,11 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useState } from "react";
 import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 const MeetingCard = () => {
   const [expanded, setExpanded] = useState(false);
+  const [animateAvatar, setAnimateAvatar] = useState(false);
 
   return (
     <motion.div
@@ -48,17 +50,26 @@ const MeetingCard = () => {
         </CardContent>
         {expanded && (
           <CardFooter className="flex flex-col items-start gap-2 border-t">
-            <div className="flex items-center gap-[9px]">
-              <h1 className="text-[#292929] font-[500] text-sm leading-5">
-                Guests
-              </h1>
-              <div className="flex items-center gap-[7px]">
-                <Globe color="#A3A3A3" className="w-3.5 h-3.5" />
-                <span className="text-[#525252] text-sm leading-5">3</span>
-              </div>
-            </div>
             <div className="flex items-center justify-between w-full">
-              <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2">
+              <div className="flex items-center gap-[9px]">
+                <h1 className="text-[#292929] font-[500] text-sm leading-5">
+                  Guests
+                </h1>
+                <div className="flex items-center gap-[7px]">
+                  <Globe color="#A3A3A3" className="w-3.5 h-3.5" />
+                  <span className="text-[#525252] text-sm leading-5">3</span>
+                </div>
+              </div>
+              <p className="text-[#737373] text-[13px]">Extra text</p>
+            </div>
+
+            <div className="flex items-center justify-between w-full">
+              <div
+                className={cn(
+                  "*:data-[slot=avatar]:ring-background flex *:data-[slot=avatar]:ring-2",
+                  animateAvatar ? "space-x-2" : "-space-x-2"
+                )}
+              >
                 <Avatar>
                   <AvatarImage
                     src="https://github.com/shadcn.png"
@@ -83,13 +94,16 @@ const MeetingCard = () => {
               </div>
 
               <div className="flex gap-[6px]">
+                <div
+                  onMouseEnter={() => setAnimateAvatar(true)}
+                  onMouseLeave={() => setAnimateAvatar(false)}
+                  className="w-2 h-7 bg-[#E5E5E5] rounded-full"
+                />
+                <div className="w-2 h-7 bg-[#F5F5F5] rounded-full" />
                 <div className="w-2 h-7 bg-[#E5E5E5] rounded-full" />
-                <div className="w-2 h-7 bg-[#E5E5E5] rounded-full" />
-                <div className="w-2 h-7 bg-[#E5E5E5] rounded-full" />
-                <div className="w-2 h-7 bg-[#E5E5E5] rounded-full" />
-                <div className="w-2 h-7 bg-[#E5E5E5] rounded-full" />
-                <div className="w-2 h-7 bg-[#E5E5E5] rounded-full" />
-                <div className="w-2 h-7 bg-[#E5E5E5] rounded-full" />
+                <div className="w-2 h-7 bg-[#F5F5F5] rounded-full" />
+                <div className="w-2 h-7 bg-[#F5F5F5] rounded-full" />
+                <div className="w-2 h-7 bg-[#F5F5F5] rounded-full" />
                 <div className="w-2 h-7 bg-[#E5E5E5] rounded-full" />
               </div>
             </div>
