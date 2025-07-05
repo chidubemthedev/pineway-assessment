@@ -14,8 +14,31 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
+const members = [
+  {
+    name: "Colin N.",
+    avatar: "https://github.com/shadcn.png",
+    fallback: "CN",
+    extra: "Frontend Engineer, joining from Berlin.",
+  },
+  {
+    name: "Lee R.",
+    avatar: "https://github.com/leerob.png",
+    fallback: "LR",
+    extra: "Product Manager, remote.",
+  },
+  {
+    name: "Evil Rabbit",
+    avatar: "https://github.com/evilrabbit.png",
+    fallback: "ER",
+    extra: "Backend Lead, on-site.",
+  },
+];
+const TOTAL_BARS = 7;
+
 const MeetingCard = () => {
   const [expanded, setExpanded] = useState(false);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [animateAvatar, setAnimateAvatar] = useState(false);
 
   return (
@@ -49,7 +72,7 @@ const MeetingCard = () => {
           </motion.div>
         </CardContent>
         {expanded && (
-          <CardFooter className="flex flex-col items-start gap-2 border-t">
+          <CardFooter className="flex flex-col items-start gap-2 border-t overflow-hidden">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-[9px]">
                 <h1 className="text-[#292929] font-[500] text-sm leading-5">
@@ -57,54 +80,71 @@ const MeetingCard = () => {
                 </h1>
                 <div className="flex items-center gap-[7px]">
                   <Globe color="#A3A3A3" className="w-3.5 h-3.5" />
-                  <span className="text-[#525252] text-sm leading-5">3</span>
+                  <span className="text-[#525252] text-sm leading-5">
+                    {members.length}
+                  </span>
                 </div>
               </div>
-              <p className="text-[#737373] text-[13px]">Extra text</p>
-            </div>
-
-            <div className="flex items-center justify-between w-full">
-              <div
+              <p
                 className={cn(
-                  "*:data-[slot=avatar]:ring-background flex *:data-[slot=avatar]:ring-2",
-                  animateAvatar ? "space-x-2" : "-space-x-2"
+                  "text-[#737373] text-[13px] transition-opacity duration-300",
+                  hoveredIdx !== null ? "opacity-100" : "opacity-0"
                 )}
               >
-                <Avatar>
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="@shadcn"
-                  />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <Avatar>
-                  <AvatarImage
-                    src="https://github.com/leerob.png"
-                    alt="@leerob"
-                  />
-                  <AvatarFallback>LR</AvatarFallback>
-                </Avatar>
-                <Avatar>
-                  <AvatarImage
-                    src="https://github.com/evilrabbit.png"
-                    alt="@evilrabbit"
-                  />
-                  <AvatarFallback>ER</AvatarFallback>
-                </Avatar>
-              </div>
-
+                {hoveredIdx !== null ? members[hoveredIdx].extra : ""}
+              </p>
+            </div>
+            <div className="flex items-center justify-between w-full">
+              <motion.div
+                layout
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className={
+                  "flex *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:ring-2"
+                }
+                style={{ gap: animateAvatar ? 8 : -8 }}
+              >
+                {members.map((member, idx) => (
+                  <Avatar
+                    key={member.fallback}
+                    className={
+                      hoveredIdx === idx
+                        ? "outline-2 outline-[#7839EE] z-10"
+                        : ""
+                    }
+                  >
+                    <AvatarImage
+                      src={member.avatar}
+                      alt={`@${member.fallback}`}
+                    />
+                    <AvatarFallback>{member.fallback}</AvatarFallback>
+                  </Avatar>
+                ))}
+              </motion.div>
               <div className="flex gap-[6px]">
-                <div
-                  onMouseEnter={() => setAnimateAvatar(true)}
-                  onMouseLeave={() => setAnimateAvatar(false)}
-                  className="w-2 h-7 bg-[#E5E5E5] rounded-full"
-                />
-                <div className="w-2 h-7 bg-[#F5F5F5] rounded-full" />
-                <div className="w-2 h-7 bg-[#E5E5E5] rounded-full" />
-                <div className="w-2 h-7 bg-[#F5F5F5] rounded-full" />
-                <div className="w-2 h-7 bg-[#F5F5F5] rounded-full" />
-                <div className="w-2 h-7 bg-[#F5F5F5] rounded-full" />
-                <div className="w-2 h-7 bg-[#E5E5E5] rounded-full" />
+                {Array.from({ length: TOTAL_BARS }).map((_, idx) => {
+                  const isActive = idx < members.length;
+                  return (
+                    <div
+                      key={idx}
+                      onMouseEnter={() => {
+                        if (isActive) {
+                          setAnimateAvatar(true);
+                          setHoveredIdx(idx);
+                        }
+                      }}
+                      onMouseLeave={() => {
+                        setAnimateAvatar(false);
+                        setHoveredIdx(null);
+                      }}
+                      className={cn(
+                        "w-2 h-7 rounded-full transition-colors",
+                        isActive
+                          ? "bg-[#E5E5E5] cursor-pointer"
+                          : "bg-[#F5F5F5]"
+                      )}
+                    />
+                  );
+                })}
               </div>
             </div>
           </CardFooter>
