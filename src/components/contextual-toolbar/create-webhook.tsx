@@ -47,7 +47,7 @@ const CreateWebhook = ({ layoutId }: Props) => {
             <Input placeholder="https://myapp.com/webhooks" />
           </div>
 
-          <div className="space-y-2">
+          <motion.div layoutId="center" className="space-y-2">
             <h1 className="text-[#292929] font-[500] text-sm leading-5">
               Projects
             </h1>
@@ -69,7 +69,7 @@ const CreateWebhook = ({ layoutId }: Props) => {
                 <Label htmlFor="option-two">Tagged projects</Label>
               </div>
             </RadioGroup>
-          </div>
+          </motion.div>
 
           <div className="space-y-2">
             <h1 className="text-[#292929] font-[500] text-sm leading-5">

@@ -46,7 +46,7 @@ const RepoConnector = ({ layoutId }: Props) => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <motion.div layout className="space-y-2">
+          <motion.div layout layoutId="center" className="space-y-2">
             {items.map((item, index) => (
               <div key={index} className="flex items-center gap-2">
                 <Checkbox />

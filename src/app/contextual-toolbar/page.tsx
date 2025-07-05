@@ -73,7 +73,7 @@ const ContextualToolbarPage = () => {
             layout
             className="absolute bottom-[15%] p-[10px] rounded-[18px] max-w-[482px] shadow-[0px_8px_16px_0px_#0000000A,_0px_4px_8px_0px_#0000000A,_0px_0px_0px_1px_#09090B0D]"
           >
-            <div>
+            <motion.div layout>
               <motion.div layout>
                 {activeTab === "webhook" && (
                   <div id="tab-panel-webhook" role="tabpanel">
@@ -91,9 +91,9 @@ const ContextualToolbarPage = () => {
                   </div>
                 )}
                 {activeTab === "workspace" && (
-                  <motion.div id="tab-panel-workspace" role="tabpanel">
+                  <div id="tab-panel-workspace" role="tabpanel">
                     <ShareWorkspace layoutId="footer" />
-                  </motion.div>
+                  </div>
                 )}
               </motion.div>
 
@@ -151,7 +151,7 @@ const ContextualToolbarPage = () => {
                 </div>
                 <Menu color="#737373" />
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
