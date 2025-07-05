@@ -14,7 +14,7 @@ const ContextualToolbarPage = () => {
   return (
     <div className="h-screen bg-white p-[46px]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full rounded-4xl shadow-[0px_1px_2px_0px_#09090B0D,_0px_0px_0px_1px_#09090B0D]">
-        <div className="flex flex-col justify-center pl-28">
+        <div className="relative flex flex-col justify-center pl-28">
           <div className="max-w-[265px]">
             <h1 className="font-[500] leading-6 text-[#292929]">
               Contextual toolbar
@@ -32,12 +32,17 @@ const ContextualToolbarPage = () => {
               <BadgeList />
             </div>
           </div>
-          <Button asChild className="w-fit" variant={"outline"} size={"sm"}>
+          <Button
+            asChild
+            className="absolute bottom-[10%] w-fit"
+            variant={"outline"}
+            size={"sm"}
+          >
             <Link href="/contextual-toolbar">Next Task</Link>
           </Button>
         </div>
-        <div className="flex flex-col justify-end">
-          <div className="p-[10px] rounded-[18px] max-w-[482px] shadow-[0px_8px_16px_0px_#0000000A,_0px_4px_8px_0px_#0000000A,_0px_0px_0px_1px_#09090B0D]">
+        <div className="relative flex flex-col justify-center">
+          <div className="absolute bottom-[15%] p-[10px] rounded-[18px] max-w-[482px] shadow-[0px_8px_16px_0px_#0000000A,_0px_4px_8px_0px_#0000000A,_0px_0px_0px_1px_#09090B0D]">
             <Tabs defaultValue="webhook">
               <TabsContent value="webhook">
                 <CreateWebhook />
