@@ -74,9 +74,9 @@ const ContextualToolbarPage = () => {
                   </div>
                 )}
                 {activeTab === "workspace" && (
-                  <div id="tab-panel-workspace" role="tabpanel">
+                  <motion.div id="tab-panel-workspace" role="tabpanel">
                     <ShareWorkspace layoutId="footer" />
-                  </div>
+                  </motion.div>
                 )}
               </motion.div>
 

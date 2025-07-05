@@ -19,7 +19,7 @@ type Props = {
 };
 
 const ShareWorkspace = ({ layoutId }: Props) => {
-  const [share, setShare] = useState(true);
+  const [share, setShare] = useState(false);
   const value = "/mylink.com";
 
   useEffect(() => {
@@ -43,9 +43,11 @@ const ShareWorkspace = ({ layoutId }: Props) => {
         <CardContent>
           {!share && (
             <div className="flex gap-4">
-              <CardDescription layout>
-                Your secret API Key will be shared with all users belonging to
-                your organization.
+              <CardDescription layoutId="desc">
+                <motion.p layout>
+                  Your secret API Key will be shared with all users belonging to
+                  your organization.
+                </motion.p>
               </CardDescription>
               <CardAction layout layoutId="switch">
                 <Switch
@@ -56,7 +58,7 @@ const ShareWorkspace = ({ layoutId }: Props) => {
             </div>
           )}
           {share && (
-            <div className="space-y-2">
+            <motion.div className="space-y-2">
               <div className="flex gap-4 justify-between">
                 <CardTitle
                   layout
@@ -72,9 +74,11 @@ const ShareWorkspace = ({ layoutId }: Props) => {
                   />
                 </CardAction>
               </div>
-              <Input value={value} />
-              <Button variant={"outline"}>Copy</Button>
-            </div>
+              <motion.div layout layoutId="desc" className="space-y-2">
+                <Input value={value} />
+                <Button variant={"outline"}>Copy</Button>
+              </motion.div>
+            </motion.div>
           )}
         </CardContent>
         <CardFooter className="flex gap-2 justify-end">
