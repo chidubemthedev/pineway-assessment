@@ -28,11 +28,12 @@ const ShareWorkspace = ({ layoutId }: Props) => {
 
   return (
     <motion.div>
-      <Card>
+      <Card className="bg-[#FCFCFC]">
         <CardHeader className="flex flex-col">
           {!share && (
             <CardTitle
               layout
+              layoutId="switch-title"
               className="text-[#292929] font-[500] text-sm leading-5"
             >
               Sharing is off
@@ -59,6 +60,7 @@ const ShareWorkspace = ({ layoutId }: Props) => {
               <div className="flex gap-4 justify-between">
                 <CardTitle
                   layout
+                  layoutId="switch-title"
                   className="text-[#292929] font-[500] text-sm leading-5"
                 >
                   Sharing is on

@@ -33,7 +33,7 @@ type Props = {
 const RepoConnector = ({ layoutId }: Props) => {
   return (
     <motion.div>
-      <Card>
+      <Card className="bg-[#FCFCFC]">
         <CardHeader>
           <CardTitle
             layout

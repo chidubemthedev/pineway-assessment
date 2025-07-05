@@ -17,7 +17,7 @@ type Props = {
 const CreateApiKey = ({ layoutId }: Props) => {
   return (
     <motion.div>
-      <Card>
+      <Card className="bg-[#FCFCFC]">
         <CardHeader>
           <CardTitle
             layout
