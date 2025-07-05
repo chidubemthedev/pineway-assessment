@@ -97,27 +97,33 @@ const MeetingCard = () => {
             <div className="flex items-center justify-between w-full">
               <motion.div
                 layout
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 className={
                   "flex *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:ring-2"
                 }
-                style={{ gap: animateAvatar ? 8 : -8 }}
               >
                 {members.map((member, idx) => (
-                  <Avatar
+                  <motion.div
                     key={member.fallback}
-                    className={
-                      hoveredIdx === idx
-                        ? "outline-2 outline-[#7839EE] z-10"
-                        : ""
-                    }
+                    animate={{
+                      marginLeft: idx === 0 ? 0 : animateAvatar ? 8 : -8,
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    style={{ zIndex: hoveredIdx === idx ? 10 : undefined }}
                   >
-                    <AvatarImage
-                      src={member.avatar}
-                      alt={`@${member.fallback}`}
-                    />
-                    <AvatarFallback>{member.fallback}</AvatarFallback>
-                  </Avatar>
+                    <Avatar
+                      className={
+                        hoveredIdx === idx
+                          ? "outline-2 outline-[#7839EE] z-10"
+                          : ""
+                      }
+                    >
+                      <AvatarImage
+                        src={member.avatar}
+                        alt={`@${member.fallback}`}
+                      />
+                      <AvatarFallback>{member.fallback}</AvatarFallback>
+                    </Avatar>
+                  </motion.div>
                 ))}
               </motion.div>
               <div className="flex gap-[6px]">
