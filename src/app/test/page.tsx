@@ -80,7 +80,7 @@ const ContextualToolbarPage = () => {
                 )}
               </motion.div>
 
-              <motion.div layout className="flex items-center mt-2">
+              <motion.div layout className="flex items-center gap-2 mt-2">
                 <motion.div
                   layout
                   className="overflow-x-scroll scrollbar-none flex-1"
@@ -89,10 +89,10 @@ const ContextualToolbarPage = () => {
                     {TABS.map((tab) => (
                       <button
                         key={tab.value}
-                        className={`whitespace-nowrap px-4 py-2 rounded-lg font-medium text-sm transition-colors duration-150 ${
+                        className={`whitespace-nowrap px-2 py-3 rounded-[10px] font-medium text-sm transition-colors duration-150 ${
                           activeTab === tab.value
-                            ? "bg-gray-100 text-black"
-                            : "bg-transparent text-gray-500 hover:bg-gray-50"
+                            ? "bg-[#F7F7F7] text-[#424242]"
+                            : "bg-transparent text-[#737373] hover:bg-gray-50"
                         }`}
                         onClick={() => setActiveTab(tab.value)}
                         aria-selected={activeTab === tab.value}
@@ -106,7 +106,10 @@ const ContextualToolbarPage = () => {
                     ))}
                   </motion.div>
                 </motion.div>
-                <Menu />
+                <div className="shrink-0">
+                  <div className="bg-[#E5E5E5] h-5 w-0.5" />
+                </div>
+                <Menu color="#737373" />
               </motion.div>
             </div>
           </motion.div>
