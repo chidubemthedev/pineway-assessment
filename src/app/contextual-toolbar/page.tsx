@@ -7,7 +7,7 @@ import BadgeList from "@/components/shared/badge-list";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 
 const TABS = [
@@ -19,6 +19,23 @@ const TABS = [
 
 const ContextualToolbarPage = () => {
   const [activeTab, setActiveTab] = useState("webhook");
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const tabListRef = useRef<HTMLDivElement | null>(null);
+  const [indicatorProps, setIndicatorProps] = useState({ width: 0, x: 0 });
+
+  useEffect(() => {
+    const idx = TABS.findIndex((tab) => tab.value === activeTab);
+    const node = tabRefs.current[idx];
+    const container = tabListRef.current;
+    if (node && container) {
+      const nodeRect = node.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      setIndicatorProps({
+        width: nodeRect.width,
+        x: nodeRect.left - containerRect.left,
+      });
+    }
+  }, [activeTab]);
 
   return (
     <div className="h-screen bg-white p-[46px]">
@@ -83,17 +100,40 @@ const ContextualToolbarPage = () => {
               <motion.div layout className="flex items-center gap-2 mt-2">
                 <motion.div
                   layout
-                  className="overflow-x-scroll scrollbar-none flex-1"
+                  className="flex-1 relative overflow-x-scroll scrollbar-none"
                 >
-                  <motion.div layout className="flex space-x-2">
-                    {TABS.map((tab) => (
+                  {/* Animated active tab indicator */}
+                  <motion.div
+                    layoutId="tab-indicator"
+                    className="absolute top-0 left-0 h-full rounded-[10px] bg-[#F7F7F7] z-0"
+                    animate={indicatorProps}
+                    transition={{
+                      type: "tween",
+                      duration: 0.5,
+                    }}
+                    style={{
+                      width: 0,
+                      x: 0,
+                    }}
+                    initial={false}
+                  />
+                  <motion.div
+                    layout
+                    className="flex space-x-2 relative z-10"
+                    ref={tabListRef}
+                  >
+                    {TABS.map((tab, idx) => (
                       <button
                         key={tab.value}
+                        ref={(el) => {
+                          tabRefs.current[idx] = el;
+                        }}
                         className={`whitespace-nowrap px-2 py-3 rounded-[10px] font-medium text-sm transition-colors duration-150 ${
                           activeTab === tab.value
-                            ? "bg-[#F7F7F7] text-[#424242]"
-                            : "bg-transparent text-[#737373] hover:bg-gray-50"
+                            ? "text-[#424242]"
+                            : "bg-transparent text-[#737373]"
                         }`}
+                        style={{ position: "relative", zIndex: 1 }}
                         onClick={() => setActiveTab(tab.value)}
                         aria-selected={activeTab === tab.value}
                         aria-controls={`tab-panel-${tab.value}`}
