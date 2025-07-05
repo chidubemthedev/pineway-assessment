@@ -5,12 +5,21 @@ import RepoConnector from "@/components/contextual-toolbar/repo-connector";
 import ShareWorkspace from "@/components/contextual-toolbar/share-workspace";
 import BadgeList from "@/components/shared/badge-list";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Menu } from "lucide-react";
 import Link from "next/link";
-// import { motion, AnimatePresence } from "motion/react";
+import { useState } from "react";
+import { motion } from "motion/react";
+
+const TABS = [
+  { value: "webhook", label: "Create webhook" },
+  { value: "repositories", label: "Connect repositories" },
+  { value: "api", label: "Create API key" },
+  { value: "workspace", label: "Share workspace" },
+];
 
 const ContextualToolbarPage = () => {
+  const [activeTab, setActiveTab] = useState("webhook");
+
   return (
     <div className="h-screen bg-white p-[46px]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full rounded-4xl shadow-[0px_1px_2px_0px_#09090B0D,_0px_0px_0px_1px_#09090B0D]">
@@ -23,6 +32,7 @@ const ContextualToolbarPage = () => {
               A toolbar that suggests and enables actions based on users&apos;
               navigation.
             </p>
+
             <p className="leading-5 text-sm text-[#737373] mt-3">
               Suggestions are related to the current page and users can perform
               actions inside the component, without changing to another page or
@@ -42,35 +52,64 @@ const ContextualToolbarPage = () => {
           </Button>
         </div>
         <div className="relative flex flex-col justify-center">
-          <div className="absolute bottom-[15%] p-[10px] rounded-[18px] max-w-[482px] shadow-[0px_8px_16px_0px_#0000000A,_0px_4px_8px_0px_#0000000A,_0px_0px_0px_1px_#09090B0D]">
-            <Tabs defaultValue="webhook">
-              <TabsContent value="webhook">
-                <CreateWebhook />
-              </TabsContent>
-              <TabsContent value="repositories">
-                <RepoConnector />
-              </TabsContent>
-              <TabsContent value="api">
-                <CreateApiKey />
-              </TabsContent>
-              <TabsContent value="workspace">
-                <ShareWorkspace />
-              </TabsContent>
-              <div className="flex items-center">
-                <div className="overflow-x-scroll scrollbar-none flex-1">
-                  <TabsList>
-                    <TabsTrigger value="webhook">Create webhook</TabsTrigger>
-                    <TabsTrigger value="repositories">
-                      Connect repositories
-                    </TabsTrigger>
-                    <TabsTrigger value="api">Create API key</TabsTrigger>
-                    <TabsTrigger value="workspace">Share workspace</TabsTrigger>
-                  </TabsList>
-                </div>
+          <motion.div
+            layout
+            className="absolute bottom-[15%] p-[10px] rounded-[18px] max-w-[482px] shadow-[0px_8px_16px_0px_#0000000A,_0px_4px_8px_0px_#0000000A,_0px_0px_0px_1px_#09090B0D]"
+          >
+            <div>
+              <motion.div layout>
+                {activeTab === "webhook" && (
+                  <div id="tab-panel-webhook" role="tabpanel">
+                    <CreateWebhook layoutId="footer" />
+                  </div>
+                )}
+                {activeTab === "repositories" && (
+                  <div id="tab-panel-repositories" role="tabpanel">
+                    <RepoConnector layoutId="footer" />
+                  </div>
+                )}
+                {activeTab === "api" && (
+                  <div id="tab-panel-api" role="tabpanel">
+                    <CreateApiKey layoutId="footer" />
+                  </div>
+                )}
+                {activeTab === "workspace" && (
+                  <div id="tab-panel-workspace" role="tabpanel">
+                    <ShareWorkspace layoutId="footer" />
+                  </div>
+                )}
+              </motion.div>
+
+              <motion.div layout className="flex items-center mt-2">
+                <motion.div
+                  layout
+                  className="overflow-x-scroll scrollbar-none flex-1"
+                >
+                  <motion.div layout className="flex space-x-2">
+                    {TABS.map((tab) => (
+                      <button
+                        key={tab.value}
+                        className={`whitespace-nowrap px-4 py-2 rounded-lg font-medium text-sm transition-colors duration-150 ${
+                          activeTab === tab.value
+                            ? "bg-gray-100 text-black"
+                            : "bg-transparent text-gray-500 hover:bg-gray-50"
+                        }`}
+                        onClick={() => setActiveTab(tab.value)}
+                        aria-selected={activeTab === tab.value}
+                        aria-controls={`tab-panel-${tab.value}`}
+                        role="tab"
+                        tabIndex={activeTab === tab.value ? 0 : -1}
+                        type="button"
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </motion.div>
+                </motion.div>
                 <Menu />
-              </div>
-            </Tabs>
-          </div>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
