@@ -46,7 +46,7 @@ const ShareWorkspace = ({ layoutId }: Props) => {
                 Your secret API Key will be shared with all users belonging to
                 your organization.
               </CardDescription>
-              <CardAction>
+              <CardAction layout layoutId="switch">
                 <Switch
                   checked={share}
                   onCheckedChange={() => setShare(!share)}
@@ -63,7 +63,7 @@ const ShareWorkspace = ({ layoutId }: Props) => {
                 >
                   Sharing is on
                 </CardTitle>
-                <CardAction>
+                <CardAction layout layoutId="switch">
                   <Switch
                     checked={share}
                     onCheckedChange={() => setShare(!share)}
