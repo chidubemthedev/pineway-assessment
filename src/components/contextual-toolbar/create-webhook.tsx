@@ -87,9 +87,14 @@ const CreateWebhook = ({ layoutId }: Props) => {
             </div>
           </div>
         </CardContent>
-        <CardFooter layoutId={layoutId} className="flex gap-2 justify-end">
-          <Button variant={"ghost"}>Cancel</Button>
-          <Button>Create webhook</Button>
+        <CardFooter className="flex gap-2 justify-end">
+          <motion.div layout layoutId="cancel">
+            <Button variant={"ghost"}>Cancel</Button>
+          </motion.div>
+
+          <motion.div layout layoutId={layoutId}>
+            <Button>Create webhook</Button>
+          </motion.div>
         </CardFooter>
       </Card>
     </motion.div>

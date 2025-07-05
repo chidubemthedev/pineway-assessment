@@ -57,9 +57,14 @@ const RepoConnector = ({ layoutId }: Props) => {
             ))}
           </motion.div>
         </CardContent>
-        <CardFooter layoutId={layoutId} className="flex gap-2 justify-end">
-          <Button variant={"ghost"}>Cancel</Button>
-          <Button>Connect repositories</Button>
+        <CardFooter className="flex gap-2 justify-end">
+          <motion.div layout layoutId="cancel">
+            <Button variant={"ghost"}>Cancel</Button>
+          </motion.div>
+
+          <motion.div layout layoutId={layoutId}>
+            <Button>Connect repositories</Button>
+          </motion.div>
         </CardFooter>
       </Card>
     </motion.div>

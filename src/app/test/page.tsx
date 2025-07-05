@@ -56,7 +56,6 @@ const ContextualToolbarPage = () => {
             layout
             className="absolute bottom-[15%] p-[10px] rounded-[18px] max-w-[482px] shadow-[0px_8px_16px_0px_#0000000A,_0px_4px_8px_0px_#0000000A,_0px_0px_0px_1px_#09090B0D]"
           >
-            {/* HTML Tabs Implementation */}
             <div>
               <motion.div layout>
                 {activeTab === "webhook" && (
