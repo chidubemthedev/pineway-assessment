@@ -31,7 +31,10 @@ const RepoConnector = () => {
     <motion.div>
       <Card>
         <CardHeader>
-          <CardTitle className="text-[#292929] font-[500] text-sm leading-5">
+          <CardTitle
+            layout
+            className="text-[#292929] font-[500] text-sm leading-5"
+          >
             Connect repositories to{" "}
             <Badge className="text-[#7839EE] text-xs font-[500] bg-[#ECE9FECC] rounded-[6px]">
               acme
@@ -39,7 +42,7 @@ const RepoConnector = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-2">
+          <motion.div layout className="space-y-2">
             {items.map((item, index) => (
               <div key={index} className="flex items-center gap-2">
                 <Checkbox />
@@ -48,9 +51,9 @@ const RepoConnector = () => {
                 </Label>
               </div>
             ))}
-          </div>
+          </motion.div>
         </CardContent>
-        <CardFooter className="flex gap-2 justify-end">
+        <CardFooter layout className="flex gap-2 justify-end">
           <Button variant={"ghost"}>Cancel</Button>
           <Button>Connect repositories</Button>
         </CardFooter>
