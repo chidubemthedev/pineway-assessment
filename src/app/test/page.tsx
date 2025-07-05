@@ -5,7 +5,6 @@ import RepoConnector from "@/components/contextual-toolbar/repo-connector";
 import ShareWorkspace from "@/components/contextual-toolbar/share-workspace";
 import BadgeList from "@/components/shared/badge-list";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -33,6 +32,7 @@ const ContextualToolbarPage = () => {
               A toolbar that suggests and enables actions based on users&apos;
               navigation.
             </p>
+
             <p className="leading-5 text-sm text-[#737373] mt-3">
               Suggestions are related to the current page and users can perform
               actions inside the component, without changing to another page or
@@ -57,8 +57,8 @@ const ContextualToolbarPage = () => {
             className="absolute bottom-[15%] p-[10px] rounded-[18px] max-w-[482px] shadow-[0px_8px_16px_0px_#0000000A,_0px_4px_8px_0px_#0000000A,_0px_0px_0px_1px_#09090B0D]"
           >
             {/* HTML Tabs Implementation */}
-            <motion.div layout>
-              <div>
+            <div>
+              <motion.div layout>
                 {activeTab === "webhook" && (
                   <div id="tab-panel-webhook" role="tabpanel">
                     <CreateWebhook />
@@ -79,7 +79,7 @@ const ContextualToolbarPage = () => {
                     <ShareWorkspace />
                   </div>
                 )}
-              </div>
+              </motion.div>
 
               <motion.div layout className="flex items-center mt-2">
                 <motion.div
@@ -107,10 +107,9 @@ const ContextualToolbarPage = () => {
                     ))}
                   </motion.div>
                 </motion.div>
-                <Separator />
                 <Menu />
               </motion.div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
