@@ -102,7 +102,6 @@ const ContextualToolbarPage = () => {
                   layout
                   className="flex-1 relative overflow-x-scroll scrollbar-none"
                 >
-                  {/* Animated active tab indicator */}
                   <motion.div
                     layoutId="tab-indicator"
                     className="absolute top-0 left-0 h-full rounded-[10px] bg-[#F7F7F7] z-0"
