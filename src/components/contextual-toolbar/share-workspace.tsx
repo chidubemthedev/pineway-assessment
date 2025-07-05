@@ -1,5 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import { CheckCircle2 } from "lucide-react";
+import { motion } from "motion/react";
+import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -12,7 +15,6 @@ import {
 } from "../ui/card";
 import { Input } from "../ui/input";
 import { Switch } from "../ui/switch";
-import { motion } from "motion/react";
 
 type Props = {
   layoutId?: string;
@@ -22,9 +24,13 @@ const ShareWorkspace = ({ layoutId }: Props) => {
   const [share, setShare] = useState(false);
   const value = "/mylink.com";
 
-  useEffect(() => {
-    console.log(share);
-  }, [share]);
+  const onCopy = () => {
+    navigator.clipboard.writeText(value);
+    toast("Link to secret key copied!", {
+      className: "toast",
+      icon: <CheckCircle2 color="#ffffff" fill="#17B26A" />,
+    });
+  };
 
   return (
     <motion.div>
@@ -76,7 +82,9 @@ const ShareWorkspace = ({ layoutId }: Props) => {
               </div>
               <motion.div layout layoutId="desc" className="space-y-2">
                 <Input value={value} />
-                <Button variant={"outline"}>Copy</Button>
+                <Button onClick={onCopy} variant={"outline"}>
+                  Copy
+                </Button>
               </motion.div>
             </motion.div>
           )}
