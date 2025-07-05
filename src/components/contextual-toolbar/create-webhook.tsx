@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
+import { motion } from "motion/react";
 
 const events = [
   {
@@ -31,7 +32,7 @@ const events = [
 
 const CreateWebhook = () => {
   return (
-    <div>
+    <motion.div>
       <h1 className="text-[#292929] font-[500] text-sm leading-5 mb-2.5">
         Create webhook
       </h1>
@@ -87,7 +88,7 @@ const CreateWebhook = () => {
           <Button>Create webhook</Button>
         </CardFooter>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 
