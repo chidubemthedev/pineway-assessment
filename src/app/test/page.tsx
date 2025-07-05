@@ -61,22 +61,22 @@ const ContextualToolbarPage = () => {
               <motion.div layout>
                 {activeTab === "webhook" && (
                   <div id="tab-panel-webhook" role="tabpanel">
-                    <CreateWebhook />
+                    <CreateWebhook layoutId="footer" />
                   </div>
                 )}
                 {activeTab === "repositories" && (
                   <div id="tab-panel-repositories" role="tabpanel">
-                    <RepoConnector />
+                    <RepoConnector layoutId="footer" />
                   </div>
                 )}
                 {activeTab === "api" && (
                   <div id="tab-panel-api" role="tabpanel">
-                    <CreateApiKey />
+                    <CreateApiKey layoutId="footer" />
                   </div>
                 )}
                 {activeTab === "workspace" && (
                   <div id="tab-panel-workspace" role="tabpanel">
-                    <ShareWorkspace />
+                    <ShareWorkspace layoutId="footer" />
                   </div>
                 )}
               </motion.div>

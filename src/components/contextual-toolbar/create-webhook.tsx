@@ -30,7 +30,11 @@ const events = [
   },
 ];
 
-const CreateWebhook = () => {
+type Props = {
+  layoutId?: string;
+};
+
+const CreateWebhook = ({ layoutId }: Props) => {
   return (
     <motion.div>
       <h1 className="text-[#292929] font-[500] text-sm leading-5 mb-2.5">
@@ -83,7 +87,7 @@ const CreateWebhook = () => {
             </div>
           </div>
         </CardContent>
-        <CardFooter className="flex gap-2 justify-end">
+        <CardFooter layoutId={layoutId} className="flex gap-2 justify-end">
           <Button variant={"ghost"}>Cancel</Button>
           <Button>Create webhook</Button>
         </CardFooter>

@@ -11,7 +11,11 @@ import {
 import { Switch } from "../ui/switch";
 import { motion } from "motion/react";
 
-const ShareWorkspace = () => {
+type Props = {
+  layoutId?: string;
+};
+
+const ShareWorkspace = ({ layoutId }: Props) => {
   return (
     <motion.div>
       <Card>
@@ -34,7 +38,7 @@ const ShareWorkspace = () => {
             </CardAction>
           </div>
         </CardContent>
-        <CardFooter className="flex gap-2 justify-end">
+        <CardFooter layoutId={layoutId} className="flex gap-2 justify-end">
           <Button variant={"ghost"}>Cancel</Button>
           <Button>Create secret key</Button>
         </CardFooter>

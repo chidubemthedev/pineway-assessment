@@ -10,7 +10,11 @@ import {
 import { Input } from "../ui/input";
 import { motion } from "motion/react";
 
-const CreateApiKey = () => {
+type Props = {
+  layoutId?: string;
+};
+
+const CreateApiKey = ({ layoutId }: Props) => {
   return (
     <motion.div>
       <Card>
@@ -31,7 +35,7 @@ const CreateApiKey = () => {
             <Input placeholder="API key name" />
           </div>
         </CardContent>
-        <CardFooter className="flex gap-2 justify-end">
+        <CardFooter layoutId={layoutId} className="flex gap-2 justify-end">
           <Button variant={"ghost"}>Cancel</Button>
           <Button>Create secret key</Button>
         </CardFooter>

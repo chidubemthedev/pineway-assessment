@@ -26,7 +26,11 @@ const items = [
   },
 ];
 
-const RepoConnector = () => {
+type Props = {
+  layoutId?: string;
+};
+
+const RepoConnector = ({ layoutId }: Props) => {
   return (
     <motion.div>
       <Card>
@@ -53,7 +57,7 @@ const RepoConnector = () => {
             ))}
           </motion.div>
         </CardContent>
-        <CardFooter layout className="flex gap-2 justify-end">
+        <CardFooter layoutId={layoutId} className="flex gap-2 justify-end">
           <Button variant={"ghost"}>Cancel</Button>
           <Button>Connect repositories</Button>
         </CardFooter>
