@@ -16,22 +16,22 @@ import { cn } from "@/lib/utils";
 
 const members = [
   {
-    name: "Colin N.",
+    name: "Jerry N.",
     avatar: "https://github.com/shadcn.png",
     fallback: "CN",
-    extra: "Frontend Engineer, joining from Berlin.",
+    extra: "jerry -5 hrs / gmt+8",
   },
   {
-    name: "Lee R.",
+    name: "Debbie R.",
     avatar: "https://github.com/leerob.png",
     fallback: "LR",
-    extra: "Product Manager, remote.",
+    extra: "debbie -2 hrs / gmt-5",
   },
   {
     name: "Evil Rabbit",
     avatar: "https://github.com/evilrabbit.png",
     fallback: "ER",
-    extra: "Backend Lead, on-site.",
+    extra: "your time / gmt-3",
   },
 ];
 const TOTAL_BARS = 7;
@@ -87,7 +87,7 @@ const MeetingCard = () => {
               </div>
               <p
                 className={cn(
-                  "text-[#737373] text-[13px] transition-opacity duration-300",
+                  "text-[#737373] text-[13px] transition-opacity duration-300 font-mono",
                   hoveredIdx !== null ? "opacity-100" : "opacity-0"
                 )}
               >
