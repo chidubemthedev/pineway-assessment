@@ -1,5 +1,5 @@
 "use client";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Copy } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -83,6 +83,7 @@ const ShareWorkspace = ({ layoutId }: Props) => {
               <motion.div layout layoutId="desc" className="space-y-2">
                 <Input value={value} />
                 <Button onClick={onCopy} variant={"outline"}>
+                  <Copy />
                   Copy
                 </Button>
               </motion.div>
